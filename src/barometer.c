@@ -3,6 +3,7 @@
 #include "string.h"
 
 //#define BLINK_LAST_DATA
+#define CUBE_GRAPHICS_TYPE
 #define SEGMENT_LINES_QTY               10
 #define SEGMENTS_QTY                    12
 #define ONE_SEGMENT_LENGTH              4
@@ -170,7 +171,11 @@ void DrawBarometerField( unsigned char x,
                     {
                         if( blinkingFlag )
                         {
-                            for(k = i; k < SEGMENT_LINES_QTY ; k++)
+#ifdef CUBE_GRAPHICS_TYPE
+                            for(k = i; k < ( ( SEGMENT_LINES_QTY * ONE_SEGMENT_THICKNESS ) - i ) ; k++)
+#else
+                            for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+#endif  )
                             {
                                 DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 
@@ -181,7 +186,11 @@ void DrawBarometerField( unsigned char x,
                         }
                         else
                         {
-                            for(k = i; k < SEGMENT_LINES_QTY ; k++)
+#ifdef CUBE_GRAPHICS_TYPE
+                            for(k = i; k < ( ( SEGMENT_LINES_QTY * ONE_SEGMENT_THICKNESS ) - i ) ; k++)
+#else
+                            for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+#endif
                             {
                                 DrawLine(thicknessPosition1, thicknessPosition2, blinkColor);
 
@@ -193,7 +202,11 @@ void DrawBarometerField( unsigned char x,
                     }
                     else
                     {
-                        for(k = i; k < SEGMENT_LINES_QTY ; k++)
+#ifdef CUBE_GRAPHICS_TYPE
+                        for(k = i; k < ( ( SEGMENT_LINES_QTY * ONE_SEGMENT_THICKNESS ) - i ) ; k++)
+#else
+                        for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+#endif
                         {
                             DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 
@@ -201,8 +214,13 @@ void DrawBarometerField( unsigned char x,
                             thicknessPosition2.y++;
                         }
                     }
-#else
+#else // BLINK_LAST_DATA
+
+#ifdef CUBE_GRAPHICS_TYPE
                 for(k = i; k < ( ( SEGMENT_LINES_QTY * ONE_SEGMENT_THICKNESS ) - i ) ; k++)
+#else
+                for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+#endif
                 {
                     DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 

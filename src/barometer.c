@@ -165,13 +165,12 @@ void DrawBarometerField( unsigned char x,
                 thicknessPosition1 = segmentPosition;
                 thicknessPosition2 = thicknessPosition1;
                 thicknessPosition2.x = segmentPosition.x + ( ONE_SEGMENT_LENGTH - 1 );
-
+#ifdef BLINK_LAST_DATA
                     if( ( i == blinkingPosition.y ) && ( j == blinkingPosition.x ) )
                     {
-#ifdef BLINK_LAST_DATA
                         if( blinkingFlag )
                         {
-                            for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+                            for(k = i; k < SEGMENT_LINES_QTY ; k++)
                             {
                                 DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 
@@ -182,7 +181,7 @@ void DrawBarometerField( unsigned char x,
                         }
                         else
                         {
-                            for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+                            for(k = i; k < SEGMENT_LINES_QTY ; k++)
                             {
                                 DrawLine(thicknessPosition1, thicknessPosition2, blinkColor);
 
@@ -194,7 +193,7 @@ void DrawBarometerField( unsigned char x,
                     }
                     else
                     {
-                        for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+                        for(k = i; k < SEGMENT_LINES_QTY ; k++)
                         {
                             DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 
@@ -203,7 +202,7 @@ void DrawBarometerField( unsigned char x,
                         }
                     }
 #else
-                for(k = 0; k < ONE_SEGMENT_THICKNESS; k++)
+                for(k = i; k < SEGMENT_LINES_QTY ; k++)
                 {
                     DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 

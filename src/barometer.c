@@ -2,7 +2,7 @@
 #include "Nokia1110Lcd.h"
 #include "string.h"
 
-#define BLINK_LAST_DATA
+//#define BLINK_LAST_DATA
 #define SEGMENT_LINES_QTY               10
 #define SEGMENTS_QTY                    12
 #define ONE_SEGMENT_LENGTH              4
@@ -202,7 +202,7 @@ void DrawBarometerField( unsigned char x,
                         }
                     }
 #else
-                for(k = i; k < SEGMENT_LINES_QTY ; k++)
+                for(k = i; k < ( ( SEGMENT_LINES_QTY * ONE_SEGMENT_THICKNESS ) - i ) ; k++)
                 {
                     DrawLine(thicknessPosition1, thicknessPosition2, dataColor);
 

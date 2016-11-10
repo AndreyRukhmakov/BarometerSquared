@@ -19,6 +19,10 @@
 					<Add option="-ffunction-sections" />
 					<Add option="-O2" />
 					<Add option="-g2" />
+					<Add directory="D:\EmBitzProjects\BarometerSquared\" />
+					<Add directory=".\cmsis" />
+					<Add directory=".\SPL" />
+					<Add directory=".\inc" />
 				</Compiler>
 				<Assembler>
 					<Add option="-Wa,--no-warn" />

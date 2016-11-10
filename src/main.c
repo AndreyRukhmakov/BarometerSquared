@@ -1,8 +1,10 @@
+#include "stm32f10x.h"
 #include "stm32f10x_conf.h"
 #include "Nokia1110Lcd.h"
 #include "GPIO.h"
 #include "barometer.h"
 
+#define STM32F10X_MD_VL
 //----------------------------------------------------------------------------------------
 
 
@@ -37,7 +39,6 @@ int main(void)
 
     BarometerReset();
 
-    BarometerFillData(60000);
     BarometerFillData(70000);
     BarometerFillData(62000);
     BarometerFillData(64000);
@@ -48,7 +49,9 @@ int main(void)
     BarometerFillData(68000);
     BarometerFillData(69000);
     BarometerFillData(70000);
-    BarometerFillData(71000);
+    BarometerFillData(69000);
+    BarometerFillData(67000);
+
 
     while(1)
     {

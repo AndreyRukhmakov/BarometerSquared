@@ -5,9 +5,10 @@
 //#define BLINK_LAST_DATA
 #define CUBE_GRAPHICS_TYPE
 #define SEGMENT_LINES_QTY               10
-#define SEGMENTS_QTY                    12
-#define ONE_SEGMENT_LENGTH              4
+#define SEGMENTS_QTY                    5
+#define ONE_SEGMENT_LENGTH              8
 #define ONE_SEGMENT_THICKNESS           2
+#define GAP_BETWEEN_SEGMENTS            4
 #define VALUE_OF_DIVISION               10 // 10Hpa per one segment
 
 typedef enum
@@ -145,7 +146,7 @@ void DrawBarometerField( unsigned char x,
     // Draw barometer field
     position.x = x;
     position.y = y;
-    position2.x = x + ( SEGMENTS_QTY * ONE_SEGMENT_LENGTH ) + 1; // 1- is offset from border for segments
+    position2.x = x + ( SEGMENTS_QTY * ONE_SEGMENT_LENGTH ) + ( GAP_BETWEEN_SEGMENTS * ( SEGMENTS_QTY - 1 ) ) + 1; // 1- is offset from border for segments
     position2.y = y + ( SEGMENT_LINES_QTY * ONE_SEGMENT_THICKNESS ) + 1; // 1- is offset from border for segments
 
     DrawFilledRectangle(position, position2, backgroundColor);
@@ -229,7 +230,7 @@ void DrawBarometerField( unsigned char x,
                 }
 #endif
             }
-            segmentPosition.x += ONE_SEGMENT_LENGTH;
+            segmentPosition.x += ONE_SEGMENT_LENGTH + GAP_BETWEEN_SEGMENTS;
         }
         segmentPosition.y += ONE_SEGMENT_THICKNESS;
         segmentPosition.x = position.x + 1;

@@ -56,7 +56,7 @@ int main(void)
     while(1)
     {
         Delay_1ms(1000);
-        DrawBarometerField( 17, 15, white, black, white );
+        DrawBarometerField( 10, 15, white, black, white );
         LcdPrint();
     }
 
